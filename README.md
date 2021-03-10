@@ -1,174 +1,540 @@
-<pre>
-※ 참고 : https:</span><span style="color: #008000">//www.sitepoint.com/javascript-versioning-es6-es2015</span>
-
-<span style="color: #000000"># ECMAScript </span><span style="color: #800080">2015 </span><span style="color: #000000">Releases</span>
-   <span style="color: #000000">- Classes</span>
-   <span style="color: #000000">- Promises</span>
-   <span style="color: #000000">- Arrow functions</span>
-   <span style="color: #000000">- ES Modules</span>
-   <span style="color: #000000">- Generators and Iterators</span>
-
-<span style="color: #000000"># ES2016</span>
-   <span style="color: #000000">- </span><span style="color: #ff0000">Array</span><span style="color: #000000">.prototype.includes</span>
-        <span style="color: #008000">// pre-ES2016:</span>
-        <span style="color: #0000ff">const </span><span style="color: #000000">hasBob = names.indexOf(</span><span style="color: #ff00ff">'bob'</span><span style="color: #000000">) &gt; -</span><span style="color: #800080">1</span><span style="color: #000000">;</span>
-
-        <span style="color: #008000">// ES2016:</span>
-        <span style="color: #0000ff">const </span><span style="color: #000000">hasBob = names.includes(</span><span style="color: #ff00ff">'bob'</span><span style="color: #000000">);</span>
-
-   <span style="color: #000000">- Exponent Operator</span>
-        <span style="color: #008000">// pre-ES2016</span>
-        <span style="color: #ff0000">Math</span><span style="color: #000000">.pow(</span><span style="color: #800080">5</span><span style="color: #000000">, </span><span style="color: #800080">3</span><span style="color: #000000">); </span><span style="color: #008000">// =&gt; 125</span>
-
-        <span style="color: #008000">// ES2016</span>
-        <span style="color: #800080">5 </span><span style="color: #000000">** </span><span style="color: #800080">3</span><span style="color: #000000">; </span><span style="color: #008000">// =&gt; 125</span>
-
-<span style="color: #000000"># ES2017</span>
-    <span style="color: #000000">- Asynchronous Functions</span>
-        <span style="color: #008000">// promises</span>
-        <span style="color: #0000ff">const </span><span style="color: #000000">getProfile = name =&gt; {</span>
-          <span style="color: #0000ff">return </span><span style="color: #000000">fetch(`https:</span><span style="color: #008000">//some-api/people/${name}`)</span>
-            <span style="color: #000000">.then(res =&gt; res.json())</span>
-            <span style="color: #000000">.then(({ profile }) =&gt; profile); </span><span style="color: #008000">// destructuring `profile` from parsed object</span>
-        <span style="color: #000000">};</span>
-
-        <span style="color: #008000">// async/await</span>
-        <span style="color: #0000ff">const </span><span style="color: #000000">getProfile = async name =&gt; {</span>
-          <span style="color: #0000ff">const </span><span style="color: #000000">res = await fetch(`https:</span><span style="color: #008000">//some-api/people/${name}`);</span>
-          <span style="color: #0000ff">const </span><span style="color: #000000">{ profile } = await res.json();</span>
-          <span style="color: #0000ff">return </span><span style="color: #000000">profile;</span>
-        <span style="color: #000000">};</span>
-
-   <span style="color: #000000">- </span><span style="color: #ff0000">String </span><span style="color: #000000">Padding Methods</span>
-     <span style="color: #ff0000">String</span><span style="color: #000000">.prototype.padStart(length, padder) and padEnd(length, padder) will</span>
-
-    <span style="color: #ff00ff">'foo'</span><span style="color: #000000">.padStart(</span><span style="color: #800080">6</span><span style="color: #000000">);          </span><span style="color: #008000">// =&gt; '   foo';</span>
-    <span style="color: #ff00ff">'foo'</span><span style="color: #000000">.padEnd(</span><span style="color: #800080">6</span><span style="color: #000000">);            </span><span style="color: #008000">// =&gt; 'foo   ';</span>
-    <span style="color: #ff00ff">'foo'</span><span style="color: #000000">.padStart(</span><span style="color: #800080">10</span><span style="color: #000000">, </span><span style="color: #ff00ff">'bar'</span><span style="color: #000000">);  </span><span style="color: #008000">// =&gt; 'barbarbfoo';</span>
-    <span style="color: #ff00ff">'foo'</span><span style="color: #000000">.padEnd(</span><span style="color: #800080">10</span><span style="color: #000000">, </span><span style="color: #ff00ff">'bar'</span><span style="color: #000000">);    </span><span style="color: #008000">// =&gt; 'foobarbarb';</span>
-
-<span style="color: #000000"># ES2018</span>
-   <span style="color: #000000">- Asynchronous Iterators</span>
-    <span style="color: #000000">While Promise.all() allows you to await the resolution of multiple promises,</span>
-    <span style="color: #000000">there are cases </span><span style="color: #0000ff">in </span><span style="color: #000000">which you may need to sequentially iterate over asynchronously-retrieved values.</span>
-    <span style="color: #000000">It’s now possible to await async iterators along </span><span style="color: #0000ff">with </span><span style="color: #000000">arrays of promises:</span>
-
-    <span style="color: #000000">(async () =&gt; {</span>
-      <span style="color: #0000ff">const </span><span style="color: #000000">personRequests = [</span><span style="color: #ff00ff">'bob'</span><span style="color: #000000">, </span><span style="color: #ff00ff">'sarah'</span><span style="color: #000000">, </span><span style="color: #ff00ff">'laura'</span><span style="color: #000000">].map(</span>
-        <span style="color: #000000">n =&gt; fetch(`https:</span><span style="color: #008000">//api/people/${n}`)</span>
-      <span style="color: #000000">);</span>
-
-      <span style="color: #0000ff">for </span><span style="color: #000000">await (</span><span style="color: #0000ff">const </span><span style="color: #000000">response of personRequests) {</span>
-        <span style="color: #000000">console.log(await response.json());</span>
-      <span style="color: #000000">}</span>
-    <span style="color: #000000">})();</span>
-
-   <span style="color: #000000">- Object Spread and Rest Properties</span>
-     <span style="color: #000000">함수 호출 용            : myFunction(...iterableObj);</span>
-     <span style="color: #000000">배열 리터럴 용          : [...iterableObj, </span><span style="color: #800080">4</span><span style="color: #000000">, </span><span style="color: #800080">5</span><span style="color: #000000">, </span><span style="color: #800080">6</span><span style="color: #000000">]</span>
-     <span style="color: #000000">비구조화destructuring 용:[a, b, ...iterableObj] = [</span><span style="color: #800080">1</span><span style="color: #000000">, </span><span style="color: #800080">2</span><span style="color: #000000">, </span><span style="color: #800080">3</span><span style="color: #000000">, </span><span style="color: #800080">4</span><span style="color: #000000">, </span><span style="color: #800080">5</span><span style="color: #000000">];</span>
-
-<span style="color: #000000"># 참고</span>
-    <span style="color: #000000">:: [JavaScript] ES6 문법 정리</span>
-        <span style="color: #000000">※ 원본 : https:</span><span style="color: #008000">//github.com/lukehoban/es6features</span>
-        <span style="color: #000000">※ 출처 : http:</span><span style="color: #008000">//itstory.tk/entry/JavaScript-ES6-문법-정리#arrows [덕's IT Story]</span>
-</span>
-</pre>
-
+<h1>Javascript Module</h1>
 
 <pre id="contents">
-※ 참고 : https://www.sitepoint.com/javascript-versioning-es6-es2015
+<span style="font-family: Consolas">
+<span style="color: #000000">※ 참고 : https:</span><span style="color: #008000">//github.com/codepink/codepink.github.com/wiki/자바스크립트-모듈,-모듈-포맷,-모듈-로더와-모듈-번들러에-대한-10분-입문서</span>
 
-# ECMAScript 2015 Releases
-   - Classes
-   - Promises
-   - Arrow functions
-   - ES Modules
-   - Generators and Iterators
+<span style="color: #000000"># 자바스크립트 모듈</span>
+             <span style="color: #000000">모듈 포맷</span>
+             <span style="color: #000000">모듈 로더</span>
+             <span style="color: #000000">모듈 번들러</span>
 
-# ES2016
-   - Array.prototype.includes
-        // pre-ES2016:
-        const hasBob = names.indexOf('bob') > -1;
+    <span style="color: #000000">- 코드 추상화 : 특수한 라이브러리에 기능을 위임하여 실제 구현의 복잡도를 이해할 필요가 없다.</span>
+    <span style="color: #000000">- 코드 캡슐화 : 코드를 변경하지 않으려면 모듈 내부에 코드를 숨긴다.</span>
+    <span style="color: #000000">- 코드 재사용 : 같은 코드를 반복해서 작성하는 것을 피한다.</span>
+    <span style="color: #000000">- 의존성 관리 : 코드를 다시 작성하지 않고도 쉽게 의존성을 변경한다.</span>
 
-        // ES2016:
-        const hasBob = names.includes('bob');
+<span style="color: #000000"># 노출식 모듈 패턴</span>
+    <span style="color: #000000">:: 즉시 실행 함수 표현식(IIFE : Immediately Invoked Function Expression)</span>
+        <span style="color: #000000">(</span><span style="color: #0000ff">function</span><span style="color: #000000">(){</span>
+          <span style="color: #008000">// ...</span>
+        <span style="color: #000000">})()</span>
 
-   - Exponent Operator
-        // pre-ES2016
-        Math.pow(5, 3); // => 125
+    <span style="color: #000000">:: 노출식 모듈 패턴</span>
+        <span style="color: #008000">// Expose module as global variable</span>
+        <span style="color: #0000ff">var </span><span style="color: #000000">singleton = </span><span style="color: #0000ff">function</span><span style="color: #000000">(){</span>
 
-        // ES2016
-        5 ** 3; // => 125
+          <span style="color: #008000">// Inner logic</span>
+          <span style="color: #0000ff">function </span><span style="color: #000000">sayHello(){</span>
+            <span style="color: #000000">console.log(</span><span style="color: #ff00ff">'Hello'</span><span style="color: #000000">);</span>
+          <span style="color: #000000">}</span>
 
-# ES2017
-    - Asynchronous Functions
-        // promises
-        const getProfile = name => {
-          return fetch(`https://some-api/people/${name}`)
-            .then(res => res.json())
-            .then(({ profile }) => profile); // destructuring `profile` from parsed object
-        };
+          <span style="color: #008000">// Expose API</span>
+          <span style="color: #0000ff">return </span><span style="color: #000000">{</span>
+            <span style="color: #000000">sayHello: sayHello</span>
+          <span style="color: #000000">}</span>
+        <span style="color: #000000">}();</span>
 
-        // async/await
-        const getProfile = async name => {
-          const res = await fetch(`https://some-api/people/${name}`);
-          const { profile } = await res.json();
-          return profile;
-        };
+        <span style="color: #008000">// === execute</span>
+        <span style="color: #008000">// Access module functionality</span>
+        <span style="color: #000000">singleton.sayHello();</span>
+        <span style="color: #008000">// =&gt; Hello</span>
 
-   - String Padding Methods
-     String.prototype.padStart(length, padder) and padEnd(length, padder) will
+    <span style="color: #000000">:: 싱글톤 대신 함수 생성자를 이용하는 방법.</span>
+        <span style="color: #008000">// Expose module as global variable</span>
+        <span style="color: #0000ff">var </span><span style="color: #000000">Module = </span><span style="color: #0000ff">function</span><span style="color: #000000">(){</span>
 
-    'foo'.padStart(6);          // => '   foo';
-    'foo'.padEnd(6);            // => 'foo   ';
-    'foo'.padStart(10, 'bar');  // => 'barbarbfoo';
-    'foo'.padEnd(10, 'bar');    // => 'foobarbarb';
+          <span style="color: #008000">// Inner logic</span>
+          <span style="color: #0000ff">function </span><span style="color: #000000">sayHello(){</span>
+            <span style="color: #000000">console.log(</span><span style="color: #ff00ff">'Hello'</span><span style="color: #000000">);</span>
+          <span style="color: #000000">}</span>
 
-# ES2018
-   - Asynchronous Iterators
-    While Promise.all() allows you to await the resolution of multiple promises,
-    there are cases in which you may need to sequentially iterate over asynchronously-retrieved values.
-    It’s now possible to await async iterators along with arrays of promises:
+          <span style="color: #008000">// Expose API</span>
+          <span style="color: #0000ff">return </span><span style="color: #000000">{</span>
+            <span style="color: #000000">sayHello: sayHello</span>
+          <span style="color: #000000">}</span>
+        <span style="color: #000000">}</span>
 
-    (async () => {
-      const personRequests = ['bob', 'sarah', 'laura'].map(
-        n => fetch(`https://api/people/${n}`)
-      );
+        <span style="color: #008000">// === execute</span>
+        <span style="color: #0000ff">var </span><span style="color: #000000">module = </span><span style="color: #0000ff">new </span><span style="color: #000000">Module();</span>
+        <span style="color: #000000">module.sayHello();</span>
+        <span style="color: #008000">// =&gt; Hello</span>
 
-      for await (const response of personRequests) {
-        console.log(await response.json());
-      }
-    })();
+    <span style="color: #000000">:: 노출식 모듈 패턴 결론</span>
+        <span style="color: #800080">1</span><span style="color: #000000">. IIFE의 장점을 이용하지만, </span>
+        <span style="color: #800080">2</span><span style="color: #000000">. 의존성에대한 관리는 불가능함.</span>
 
-   - Object Spread and Rest Properties
-     함수 호출 용            : myFunction(...iterableObj);
-     배열 리터럴 용          : [...iterableObj, 4, 5, 6]
-     비구조화destructuring 용:[a, b, ...iterableObj] = [1, 2, 3, 4, 5];
+<span style="color: #000000"># 모듈 포맷 : 모듈을 정의하기위한 문법</span>
+    <span style="color: #000000">:: EcmaScript6 , ES2015 이전에는 모듈을 정의하기위한 공식적인 문법이 정의되지 않음.</span>
 
-# 참고
-    :: [JavaScript] ES6 문법 정리
-        ※ 원본 : https://github.com/lukehoban/es6features
-        ※ 출처 : http://itstory.tk/entry/JavaScript-ES6-문법-정리#arrows [덕's IT Story]
+    <span style="color: #000000">:: 포맷</span>
+        <span style="color: #000000">- 비동기 모듈 정의(AMD, Asynchronous Module Definition)</span>
+        <span style="color: #000000">- CommonJS</span>
+        <span style="color: #000000">- 만능 모듈 정의(UMD, Universal Module Definition)</span>
+        <span style="color: #000000">- System.register</span>
+        <span style="color: #000000">- ES6 모듈 포맷</span>
+
+
+    <span style="color: #000000">:: 비동기 모듈 정의(AMD) ( https:</span><span style="color: #008000">//github.com/amdjs/amdjs-api/wiki/AMD )</span>
+        <span style="color: #000000">::: AMD 포맷은 브라우저에서 사용되고 define 함수를 사용해서 모듈을 정의한다.</span>
+        <span style="color: #008000">//Calling define with a dependency array and a factory function</span>
+        <span style="color: #000000">define([</span><span style="color: #ff00ff">'dep1'</span><span style="color: #000000">, </span><span style="color: #ff00ff">'dep2'</span><span style="color: #000000">], </span><span style="color: #0000ff">function </span><span style="color: #000000">(dep1, dep2) {</span>
+
+          <span style="color: #008000">//Define the module value by returning a value.</span>
+          <span style="color: #0000ff">return function </span><span style="color: #000000">() {};</span>
+        <span style="color: #000000">});</span>
+
+    <span style="color: #000000">:: CommontJS 포맷 ( http:</span><span style="color: #008000">//www.commonjs.org )</span>
+        <span style="color: #000000">::: CommonJS 포맷은 Node.js에서 사용되고,</span>
+            <span style="color: #000000">require와 module.exports를 사용해서 의존성과 모듈을 정의한다.</span>
+
+        <span style="color: #0000ff">var </span><span style="color: #000000">dep1 = require(</span><span style="color: #ff00ff">'./dep1'</span><span style="color: #000000">);  </span>
+        <span style="color: #0000ff">var </span><span style="color: #000000">dep2 = require(</span><span style="color: #ff00ff">'./dep2'</span><span style="color: #000000">);</span>
+
+        <span style="color: #000000">module.exports = </span><span style="color: #0000ff">function</span><span style="color: #000000">(){  </span>
+          <span style="color: #008000">// ...</span>
+        <span style="color: #000000">}</span>
+
+    <span style="color: #000000">:: 만능 모듈 정의(UMD) ( https:</span><span style="color: #008000">//github.com/umdjs/umd )</span>
+        <span style="color: #000000">::: UMD 포맷은 브라우저와 Node.js에서 둘 다 사용될 수 있다.</span>
+
+        <span style="color: #000000">(</span><span style="color: #0000ff">function </span><span style="color: #000000">(root, factory) {</span>
+          <span style="color: #0000ff">if </span><span style="color: #000000">(</span><span style="color: #0000ff">typeof </span><span style="color: #000000">define === </span><span style="color: #ff00ff">'function' </span><span style="color: #000000">&amp;&amp; define.amd) {</span>
+            <span style="color: #008000">// AMD. Register as an anonymous module.</span>
+            <span style="color: #000000">define([</span><span style="color: #ff00ff">'b'</span><span style="color: #000000">], factory);</span>
+          <span style="color: #000000">} </span><span style="color: #0000ff">else if </span><span style="color: #000000">(</span><span style="color: #0000ff">typeof </span><span style="color: #000000">module === </span><span style="color: #ff00ff">'object' </span><span style="color: #000000">&amp;&amp; module.exports) {</span>
+            <span style="color: #008000">// Node. Does not work with strict CommonJS, but</span>
+            <span style="color: #008000">// only CommonJS-like environments that support module.exports,</span>
+            <span style="color: #008000">// like Node.</span>
+            <span style="color: #000000">module.exports = factory(require(</span><span style="color: #ff00ff">'b'</span><span style="color: #000000">));</span>
+          <span style="color: #000000">} </span><span style="color: #0000ff">else </span><span style="color: #000000">{</span>
+            <span style="color: #008000">// Browser globals (root is window)</span>
+            <span style="color: #000000">root.returnExports = factory(root.b);</span>
+          <span style="color: #000000">}</span>
+        <span style="color: #000000">}(</span><span style="color: #0000ff">this</span><span style="color: #000000">, </span><span style="color: #0000ff">function </span><span style="color: #000000">(b) {</span>
+          <span style="color: #008000">//use b in some fashion.</span>
+
+          <span style="color: #008000">// Just return a value to define the module export.</span>
+          <span style="color: #008000">// This example returns an object, but the module</span>
+          <span style="color: #008000">// can return a function as the exported value.</span>
+          <span style="color: #0000ff">return </span><span style="color: #000000">{};</span>
+        <span style="color: #000000">}));</span>
+
+    <span style="color: #000000">:: System.register ( https:</span><span style="color: #008000">//github.com/ModuleLoader/es-module-loader/blob/master/docs/system-register.md )</span>
+        <span style="color: #0000ff">import </span><span style="color: #000000">{ p as q } from </span><span style="color: #ff00ff">'./dep'</span><span style="color: #000000">;</span>
+
+        <span style="color: #0000ff">var </span><span style="color: #000000">s = </span><span style="color: #ff00ff">'local'</span><span style="color: #000000">;</span>
+
+        <span style="color: #000000">export </span><span style="color: #0000ff">function </span><span style="color: #000000">func() {  </span>
+          <span style="color: #0000ff">return </span><span style="color: #000000">q;</span>
+        <span style="color: #000000">}</span>
+
+        <span style="color: #000000">export </span><span style="color: #0000ff">class </span><span style="color: #000000">C {  </span>
+        <span style="color: #000000">}</span>
+
+<span style="color: #000000"># ES6 모듈 포맷</span>
+    <span style="color: #000000">- ES6에서 자바스크립트는 내장된 모듈 포맷도 지원한다.</span>
+    <span style="color: #000000">- 모듈의 공개 API로 내보내기 위해 export 토큰을 사용한다.</span>
+
+    <span style="color: #008000">// lib.js</span>
+
+    <span style="color: #008000">// Export the function</span>
+    <span style="color: #000000">export </span><span style="color: #0000ff">function </span><span style="color: #000000">sayHello(){  </span>
+      <span style="color: #000000">console.log(</span><span style="color: #ff00ff">'Hello'</span><span style="color: #000000">);</span>
+    <span style="color: #000000">}</span>
+
+    <span style="color: #008000">// Do not export the function</span>
+    <span style="color: #0000ff">function </span><span style="color: #000000">somePrivateFunction(){  </span>
+      <span style="color: #008000">// ...</span>
+    <span style="color: #000000">}</span>
+    <span style="color: #000000">그리고 </span><span style="color: #0000ff">import </span><span style="color: #000000">토큰은 모듈이 내보내는 부분을 가져온다.</span>
+
+    <span style="color: #0000ff">import </span><span style="color: #000000">{ sayHello } from </span><span style="color: #ff00ff">'./lib'</span><span style="color: #000000">;</span>
+
+    <span style="color: #000000">sayHello();  </span>
+    <span style="color: #008000">// =&gt; Hello</span>
+    <span style="color: #000000">우리는 as를 사용하여 가져오는 모듈에 별명을 줄 수도 있다.</span>
+
+    <span style="color: #0000ff">import </span><span style="color: #000000">{ sayHello as say } from </span><span style="color: #ff00ff">'./lib'</span><span style="color: #000000">;</span>
+
+    <span style="color: #000000">say();  </span>
+    <span style="color: #008000">// =&gt; Hello</span>
+    <span style="color: #000000">또는 전체 모듈을 한 번에 로드할 수도 있다.</span>
+
+    <span style="color: #0000ff">import </span><span style="color: #000000">* as lib from </span><span style="color: #ff00ff">'./lib'</span><span style="color: #000000">;</span>
+
+    <span style="color: #000000">lib.sayHello();  </span>
+    <span style="color: #008000">// =&gt; Hello</span>
+    <span style="color: #000000">이 형식은 </span><span style="color: #0000ff">default </span><span style="color: #000000">export도 지원한다. (역자주: </span><span style="color: #0000ff">default </span><span style="color: #000000">export를 사용하면 모듈을 가져올 때 괄호({})를 사용하지 않아도 되며, 단일 값을 내보낼 때 사용한다)</span>
+
+    <span style="color: #008000">// lib.js</span>
+
+    <span style="color: #008000">// Export default function</span>
+    <span style="color: #000000">export </span><span style="color: #0000ff">default function </span><span style="color: #000000">sayHello(){  </span>
+      <span style="color: #000000">console.log(</span><span style="color: #ff00ff">'Hello'</span><span style="color: #000000">);</span>
+    <span style="color: #000000">}</span>
+
+    <span style="color: #008000">// Export non-default function</span>
+    <span style="color: #000000">export </span><span style="color: #0000ff">function </span><span style="color: #000000">sayGoodbye(){  </span>
+      <span style="color: #000000">console.log(</span><span style="color: #ff00ff">'Goodbye'</span><span style="color: #000000">);</span>
+    <span style="color: #000000">}</span>
+    <span style="color: #000000">모듈은 다음과 같이 가져온다.</span>
+
+    <span style="color: #0000ff">import </span><span style="color: #000000">sayHello, { sayGoodbye } from </span><span style="color: #ff00ff">'./lib'</span><span style="color: #000000">;</span>
+
+    <span style="color: #000000">sayHello();  </span>
+    <span style="color: #008000">// =&gt; Hello</span>
+
+    <span style="color: #000000">sayGoodbye();  </span>
+    <span style="color: #008000">// =&gt; Goodbye</span>
+    <span style="color: #000000">함수뿐만 아니라 어떤 것이든 내보낼 수 있다.</span>
+
+    <span style="color: #008000">// lib.js</span>
+
+    <span style="color: #008000">// Export default function</span>
+    <span style="color: #000000">export </span><span style="color: #0000ff">default function </span><span style="color: #000000">sayHello(){  </span>
+      <span style="color: #000000">console.log(</span><span style="color: #ff00ff">'Hello'</span><span style="color: #000000">);</span>
+    <span style="color: #000000">}</span>
+
+    <span style="color: #008000">// Export non-default function</span>
+    <span style="color: #000000">export </span><span style="color: #0000ff">function </span><span style="color: #000000">sayGoodbye(){  </span>
+      <span style="color: #000000">console.log(</span><span style="color: #ff00ff">'Goodbye'</span><span style="color: #000000">);</span>
+    <span style="color: #000000">}</span>
+
+    <span style="color: #008000">// Export simple value</span>
+    <span style="color: #000000">export </span><span style="color: #0000ff">const </span><span style="color: #000000">apiUrl = </span><span style="color: #ff00ff">'...'</span><span style="color: #000000">;</span>
+
+    <span style="color: #008000">// Export object</span>
+    <span style="color: #000000">export </span><span style="color: #0000ff">const </span><span style="color: #000000">settings = {  </span>
+      <span style="color: #000000">debug: </span><span style="color: #0000ff">true</span>
+    <span style="color: #000000">}</span>
+    <span style="color: #000000">불행하게도 내장된 모듈 포맷은 아직 모든 브라우저에서 지원되지 않는다.</span>
+
+    <span style="color: #000000">그래서 우리는 이미 ES6 모듈 포맷을 사용할 수 있지만, </span>
+    
+    <span style="color: #000000">브라우저에서 코드를 실행하기 전에 Babel과 같은 변환기를 사용해 ES5 모듈 포맷(AMD 또는 CommonJS)으로 코드 변환이 필요하다.</span>
+
+
+<span style="color: #000000"># 모듈 로더</span>
+    <span style="color: #000000">모듈 로더는 주요 모듈 포맷으로 작성된 모듈을 해석하고 로드한다.</span>
+
+    <span style="color: #000000">모듈 로더는 런타임에 실행된다.</span>
+
+    <span style="color: #000000">브라우저에서 모듈 로더를 로드한다.</span>
+    <span style="color: #000000">모듈 로더에게 어떤 메인 애플리케이션 파일을 로드할 것인지 알려준다.</span>
+    <span style="color: #000000">모듈 로더는 메인 애플리케이션 파일을 다운로드하고 해석한다.</span>
+    <span style="color: #000000">필요한 경우 모듈 로더가 파일을 다운로드한다.</span>
+    <span style="color: #000000">브라우저 개발자 콘솔에서 네트워크 탭을 열면, 모듈 로더에 의해 많은 파일들이 로드된 것을 볼 수 있다.</span>
+
+    <span style="color: #000000">인기 있는 모듈 로더에는 다음과 같은 것들이 있다.</span>
+
+    <span style="color: #000000">RequireJS : AMD 포맷 모듈을 위한 로더 : https:</span><span style="color: #008000">//requirejs.org/</span>
+    <span style="color: #000000">SystemJS : AMD, CommonJS, UMD 또는 System.register 포맷 모듈을 위한 로더 : https:</span><span style="color: #008000">//github.com/systemjs/systemjs</span>
+
+
+<span style="color: #000000"># 모듈 번들러</span>
+    <span style="color: #000000">모듈 번들러는 모듈 로더를 대체한다.</span>
+
+    <span style="color: #000000">모듈 로더와 반대로 모듈 번들러는 빌드 타임에 실행된다.</span>
+
+    <span style="color: #000000">빌드 타임에 번들 파일을 생성하기 위해 모듈 번들러를 실행한다. ( 예: bundle.js )</span>
+    <span style="color: #000000">브라우저에서 번들 파일을 로드한다.</span>
+    <span style="color: #000000">브라우저 개발자 콘솔에서 네트워크 탭을 열면,</span>
+    <span style="color: #000000">모듈 로더에 의해 1개 파일만 로드된 것을 볼 수 있다.</span>
+    <span style="color: #000000">브라우저에서 모듈 로더를 필요로 하지 않는다.</span>
+    <span style="color: #000000">모든 코드는 번들 안에 포함되어 있다.</span>
+
+    <span style="color: #000000">인기 있는 모듈 번들에는 다음과 같은 것들이 있다.</span>
+
+    <span style="color: #000000">Browserify  : CommonJS 모듈을 위한 번들러           : http:</span><span style="color: #008000">//browserify.org/</span>
+    <span style="color: #000000">Webpack     : AMD, CommonJS, ES6 모듈을 위한 번들러 : https:</span><span style="color: #008000">//webpack.github.io/</span>
+
+<span style="color: #000000"># 요약</span>
+    <span style="color: #000000">모던 자바스크립트 개발 환경에서 툴링을 잘 이해하기 위해서는 모듈, 모듈 포맷, 모듈 로더와 모듈 번들러 사이의 차이를 이해하는 것이 중요하다.</span>
+
+    <span style="color: #000000">:: 모듈은 구현 세부 사항을 캡슐화하고 공개 API를 노출해 다른 코드에서 쉽게 로드하고 사용할 수 있도록 재사용 가능한 코드 조각이다.</span>
+
+    <span style="color: #000000">:: 모듈 포맷은 모듈을 정의하기 위해 사용하는 문법이다. AMD, CommonJS, UMD, System.register 와 같은 여러 모듈 포맷이 과거에 등장했으며, ES6부터 내장된 모듈 포맷을 사용할 수 있다.</span>
+
+    <span style="color: #000000">:: 모듈 로더는 주요 모듈 포멧으로 작성된 모듈을 런타임 때 로드하고 해석한다. RequireJS와 SystemJS가 있다.</span>
+
+    <span style="color: #000000">:: 모듈 번들러는 모듈 로더를 대체하고 빌드 타임에 모든 코드의 번들을 생성한다. Browserify와 Webpack이 있다.</span>
+</span>
 
 </pre>
 
+<xmp>
+==================================================================================================
+※ 참고 : https://github.com/codepink/codepink.github.com/wiki/자바스크립트-모듈,-모듈-포맷,-모듈-로더와-모듈-번들러에-대한-10분-입문서
+
+# 자바스크립트 모듈
+             모듈 포맷
+             모듈 로더
+             모듈 번들러
+
+    - 코드 추상화 : 특수한 라이브러리에 기능을 위임하여 실제 구현의 복잡도를 이해할 필요가 없다.
+    - 코드 캡슐화 : 코드를 변경하지 않으려면 모듈 내부에 코드를 숨긴다.
+    - 코드 재사용 : 같은 코드를 반복해서 작성하는 것을 피한다.
+    - 의존성 관리 : 코드를 다시 작성하지 않고도 쉽게 의존성을 변경한다.
+
+# 노출식 모듈 패턴
+    :: 즉시 실행 함수 표현식(IIFE : Immediately Invoked Function Expression)
+        (function(){
+          // ...
+        })()
+
+    :: 노출식 모듈 패턴
+        // Expose module as global variable
+        var singleton = function(){
+
+          // Inner logic
+          function sayHello(){
+            console.log('Hello');
+          }
+
+          // Expose API
+          return {
+            sayHello: sayHello
+          }
+        }();
+
+        // === execute
+        // Access module functionality
+        singleton.sayHello();
+        // => Hello
+
+    :: 싱글톤 대신 함수 생성자를 이용하는 방법.
+        // Expose module as global variable
+        var Module = function(){
+
+          // Inner logic
+          function sayHello(){
+            console.log('Hello');
+          }
+
+          // Expose API
+          return {
+            sayHello: sayHello
+          }
+        }
+
+        // === execute
+        var module = new Module();
+        module.sayHello();
+        // => Hello
+
+    :: 노출식 모듈 패턴 결론
+        1. IIFE의 장점을 이용하지만, 
+        2. 의존성에대한 관리는 불가능함.
+
+# 모듈 포맷 : 모듈을 정의하기위한 문법
+    :: EcmaScript6 , ES2015 이전에는 모듈을 정의하기위한 공식적인 문법이 정의되지 않음.
+
+    :: 포맷
+        - 비동기 모듈 정의(AMD, Asynchronous Module Definition)
+        - CommonJS
+        - 만능 모듈 정의(UMD, Universal Module Definition)
+        - System.register
+        - ES6 모듈 포맷
+
+
+    :: 비동기 모듈 정의(AMD) ( https://github.com/amdjs/amdjs-api/wiki/AMD )
+        ::: AMD 포맷은 브라우저에서 사용되고 define 함수를 사용해서 모듈을 정의한다.
+        //Calling define with a dependency array and a factory function
+        define(['dep1', 'dep2'], function (dep1, dep2) {
+
+          //Define the module value by returning a value.
+          return function () {};
+        });
+
+    :: CommontJS 포맷 ( http://www.commonjs.org )
+        ::: CommonJS 포맷은 Node.js에서 사용되고,
+            require와 module.exports를 사용해서 의존성과 모듈을 정의한다.
+
+        var dep1 = require('./dep1');  
+        var dep2 = require('./dep2');
+
+        module.exports = function(){  
+          // ...
+        }
+
+    :: 만능 모듈 정의(UMD) ( https://github.com/umdjs/umd )
+        ::: UMD 포맷은 브라우저와 Node.js에서 둘 다 사용될 수 있다.
+
+        (function (root, factory) {
+          if (typeof define === 'function' && define.amd) {
+            // AMD. Register as an anonymous module.
+            define(['b'], factory);
+          } else if (typeof module === 'object' && module.exports) {
+            // Node. Does not work with strict CommonJS, but
+            // only CommonJS-like environments that support module.exports,
+            // like Node.
+            module.exports = factory(require('b'));
+          } else {
+            // Browser globals (root is window)
+            root.returnExports = factory(root.b);
+          }
+        }(this, function (b) {
+          //use b in some fashion.
+
+          // Just return a value to define the module export.
+          // This example returns an object, but the module
+          // can return a function as the exported value.
+          return {};
+        }));
+
+    :: System.register ( https://github.com/ModuleLoader/es-module-loader/blob/master/docs/system-register.md )
+        import { p as q } from './dep';
+
+        var s = 'local';
+
+        export function func() {  
+          return q;
+        }
+
+        export class C {  
+        }
+
+# ES6 모듈 포맷
+    - ES6에서 자바스크립트는 내장된 모듈 포맷도 지원한다.
+    - 모듈의 공개 API로 내보내기 위해 export 토큰을 사용한다.
+
+    // lib.js
+
+    // Export the function
+    export function sayHello(){  
+      console.log('Hello');
+    }
+
+    // Do not export the function
+    function somePrivateFunction(){  
+      // ...
+    }
+    그리고 import 토큰은 모듈이 내보내는 부분을 가져온다.
+
+    import { sayHello } from './lib';
+
+    sayHello();  
+    // => Hello
+    우리는 as를 사용하여 가져오는 모듈에 별명을 줄 수도 있다.
+
+    import { sayHello as say } from './lib';
+
+    say();  
+    // => Hello
+    또는 전체 모듈을 한 번에 로드할 수도 있다.
+
+    import * as lib from './lib';
+
+    lib.sayHello();  
+    // => Hello
+    이 형식은 default export도 지원한다. (역자주: default export를 사용하면 모듈을 가져올 때 괄호({})를 사용하지 않아도 되며, 단일 값을 내보낼 때 사용한다)
+
+    // lib.js
+
+    // Export default function
+    export default function sayHello(){  
+      console.log('Hello');
+    }
+
+    // Export non-default function
+    export function sayGoodbye(){  
+      console.log('Goodbye');
+    }
+    모듈은 다음과 같이 가져온다.
+
+    import sayHello, { sayGoodbye } from './lib';
+
+    sayHello();  
+    // => Hello
+
+    sayGoodbye();  
+    // => Goodbye
+    함수뿐만 아니라 어떤 것이든 내보낼 수 있다.
+
+    // lib.js
+
+    // Export default function
+    export default function sayHello(){  
+      console.log('Hello');
+    }
+
+    // Export non-default function
+    export function sayGoodbye(){  
+      console.log('Goodbye');
+    }
+
+    // Export simple value
+    export const apiUrl = '...';
+
+    // Export object
+    export const settings = {  
+      debug: true
+    }
+    불행하게도 내장된 모듈 포맷은 아직 모든 브라우저에서 지원되지 않는다.
+
+    그래서 우리는 이미 ES6 모듈 포맷을 사용할 수 있지만, 
+    
+    브라우저에서 코드를 실행하기 전에 Babel과 같은 변환기를 사용해 ES5 모듈 포맷(AMD 또는 CommonJS)으로 코드 변환이 필요하다.
+
+
+# 모듈 로더
+    모듈 로더는 주요 모듈 포맷으로 작성된 모듈을 해석하고 로드한다.
+
+    모듈 로더는 런타임에 실행된다.
+
+    브라우저에서 모듈 로더를 로드한다.
+    모듈 로더에게 어떤 메인 애플리케이션 파일을 로드할 것인지 알려준다.
+    모듈 로더는 메인 애플리케이션 파일을 다운로드하고 해석한다.
+    필요한 경우 모듈 로더가 파일을 다운로드한다.
+    브라우저 개발자 콘솔에서 네트워크 탭을 열면, 모듈 로더에 의해 많은 파일들이 로드된 것을 볼 수 있다.
+
+    인기 있는 모듈 로더에는 다음과 같은 것들이 있다.
+
+    RequireJS : AMD 포맷 모듈을 위한 로더 : https://requirejs.org/
+    SystemJS : AMD, CommonJS, UMD 또는 System.register 포맷 모듈을 위한 로더 : https://github.com/systemjs/systemjs
+
+
+# 모듈 번들러
+    모듈 번들러는 모듈 로더를 대체한다.
+
+    모듈 로더와 반대로 모듈 번들러는 빌드 타임에 실행된다.
+
+    빌드 타임에 번들 파일을 생성하기 위해 모듈 번들러를 실행한다. ( 예: bundle.js )
+    브라우저에서 번들 파일을 로드한다.
+    브라우저 개발자 콘솔에서 네트워크 탭을 열면,
+    모듈 로더에 의해 1개 파일만 로드된 것을 볼 수 있다.
+    브라우저에서 모듈 로더를 필요로 하지 않는다.
+    모든 코드는 번들 안에 포함되어 있다.
+
+    인기 있는 모듈 번들에는 다음과 같은 것들이 있다.
+
+    Browserify  : CommonJS 모듈을 위한 번들러           : http://browserify.org/
+    Webpack     : AMD, CommonJS, ES6 모듈을 위한 번들러 : https://webpack.github.io/
+
+# 요약
+    모던 자바스크립트 개발 환경에서 툴링을 잘 이해하기 위해서는 모듈, 모듈 포맷, 모듈 로더와 모듈 번들러 사이의 차이를 이해하는 것이 중요하다.
+
+    :: 모듈은 구현 세부 사항을 캡슐화하고 공개 API를 노출해 다른 코드에서 쉽게 로드하고 사용할 수 있도록 재사용 가능한 코드 조각이다.
+
+    :: 모듈 포맷은 모듈을 정의하기 위해 사용하는 문법이다. AMD, CommonJS, UMD, System.register 와 같은 여러 모듈 포맷이 과거에 등장했으며, ES6부터 내장된 모듈 포맷을 사용할 수 있다.
+
+    :: 모듈 로더는 주요 모듈 포멧으로 작성된 모듈을 런타임 때 로드하고 해석한다. RequireJS와 SystemJS가 있다.
+
+    :: 모듈 번들러는 모듈 로더를 대체하고 빌드 타임에 모든 코드의 번들을 생성한다. Browserify와 Webpack이 있다.
+
+</xmp>
 <script>
-function autolink(doc) {
-  //var container = document.getElementById(id);
-  //var doc = container.innerHTML;
+function autolink(id) {
+  var container = document.getElementById(id);
+  var doc = container.innerHTML;
   var regURL = new RegExp("(http|https|ftp|telnet|news|irc)://([-/.a-zA-Z0-9_~#%$?&=:200-377()]+)","gi");
   var regEmail = new RegExp("([xA1-xFEa-z0-9_-]+@[xA1-xFEa-z0-9-]+\.[a-z0-9-]+)","gi");
   return doc.replace(regURL,"<a href='$1://$2' target='_blank'>$1://$2</a>").replace(regEmail,"<a href='mailto:$1'>$1</a>");
 }
 
 window.onload = function () {
-/* console.log(document.getElementsByTagName("pre")) */
-  var containers = document.getElementsByTagName("pre");
-  //var container = document.getElementById("contents");  
-  for ( var i=0;i<containers.length;i++) {
-  	console.log(containers[i].innerHTML);
-  	containers[i].innerHTML = autolink(containers[i].innerHTML);
-  }
-  
+  var container = document.getElementById("contents");
+	container.innerHTML = autolink("contents");
 }
+</script>
