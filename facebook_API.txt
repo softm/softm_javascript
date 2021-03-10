@@ -9,8 +9,8 @@
     - https://developers.facebook.com/apps
 
     - Click To "Create New App"
-        - App ID      : 1422179344726962
-        - App Secret  : dba435b955260ab3bd109ab1067d9847
+        - App ID      : xxxxxx
+        - App Secret  : xxxxxxxxxxxxxxxxxxxxxxxx
 
 2. like - fb_like.php
     https://developers.facebook.com/docs/plugins/like-button/
